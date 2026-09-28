@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@solidjs/web",
+    "types": ["vite/client", "vite-plugin-solid-svg/types"],
+    "noEmit": true,
+    "isolatedModules": true,
+    "paths": {
+      "@/*": ["../common/*"]
+    }
+  }
+}

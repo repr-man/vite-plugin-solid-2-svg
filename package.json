@@ -1,0 +1,62 @@
+{
+  "name": "vite-plugin-solid-svg",
+  "version": "0.8.1",
+  "description": "Import SVG files as Solid.js Components",
+  "keywords": [
+    "vite-plugin",
+    "svg",
+    "svgo",
+    "vite",
+    "solid",
+    "solidjs"
+  ],
+  "bugs": "https://github.com/jfgodoy/vite-plugin-solid-svg/issues",
+  "repository": "jfgodoy/vite-plugin-solid-svg",
+  "license": "MIT",
+  "author": "Jorge Godoy <godoy.jf@gmail.com>",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./types": {
+      "types": "./types.d.ts"
+    },
+    "./types-component-solid": {
+      "types": "./types-component-solid.d.ts"
+    },
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup package/index.ts --format esm,cjs --dts --clean --target=node18"
+  },
+  "files": [
+    "./dist",
+    "./types.d.ts",
+    "./types-component-solid.d.ts"
+  ],
+  "dependencies": {
+    "svgo": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "@types/node": "^20.11.30",
+    "prettier": "^3.1.1",
+    "@solidjs/vite-plugin": "^3.0.0-next.46",
+    "@solidjs/web": "^2.0.0-rc.11",
+    "solid-js": "^2.0.0-rc.11",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^8.0.0"
+  },
+  "peerDependencies": {
+    "@solidjs/vite-plugin": "^3.0.0-next.46",
+    "@solidjs/web": "^2.0.0-rc.11",
+    "solid-js": "^2.0.0-rc.11",
+    "vite": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

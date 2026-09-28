@@ -1,0 +1,9 @@
+autoInstallPeers: true
+
+minimumReleaseAgeExclude:
+  - '@solidjs/signals@2.0.0-rc.11'
+  - '@solidjs/web@2.0.0-rc.11'
+  - solid-js@2.0.0-rc.11
+
+packages:
+  - 'examples/*'
