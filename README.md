@@ -17,11 +17,11 @@ in release-candidate status, so the dependency versions below are prereleases.
 ### Install
 
 ```bash
-pnpm add -D vite-plugin-solid-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
+pnpm add -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
 pnpm add solid-js@2.0.0-rc.11 @solidjs/web@2.0.0-rc.11
 
 # or with npm
-npm install -D vite-plugin-solid-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
+npm install -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
 npm install solid-js@2.0.0-rc.11 @solidjs/web@2.0.0-rc.11
 ```
 
