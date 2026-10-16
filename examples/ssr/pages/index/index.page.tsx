@@ -1,14 +1,18 @@
-import { For, lazy } from 'solid-js'
+import { For } from 'solid-js'
 import type { Component } from 'solid-js'
 import type { ComponentProps } from '@solidjs/web'
 import CircleIcon from '~/svgs/circle.svg?component-solid'
 import rectIconUrl from '~/svgs/rect.svg?url'
 
 type IconModule = {default: Component<ComponentProps<'svg'>>}
-const modules = import.meta.glob<IconModule>('~/svgs/*.svg', { as: 'component-solid' })
+// This SSR adapter does not supply the asset manifest Solid 2 needs for lazy modules.
+const modules = import.meta.glob<IconModule>('~/svgs/*.svg', {
+  query: '?component-solid',
+  eager: true,
+})
 
-let iconList = Object.entries(modules).map(function ([key, value]) {
-  return { name: key, SvgComponent: lazy(value) }
+const iconList = Object.entries(modules).map(function ([key, value]) {
+  return { name: key, SvgComponent: value.default }
 })
 
 const Page: Component = () => {

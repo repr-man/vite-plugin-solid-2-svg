@@ -8,7 +8,7 @@ import CircleIcon from './svgs/circle.svg?component-solid'
 import rectIconUrl from './svgs/rect.svg?url'
 
 type IconModule = {default: Component<ComponentProps<'svg'>>}
-const modules = import.meta.glob<IconModule>('./svgs/*.svg', { as: 'component-solid' })
+const modules = import.meta.glob<IconModule>('./svgs/*.svg', { query: '?component-solid' })
 
 const icons = Object.entries(modules).map(([key, value]) => {
   return { name: key, SvgComponent: lazy(value) }

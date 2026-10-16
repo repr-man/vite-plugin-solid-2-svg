@@ -1,5 +1,12 @@
 # Change Log
 
+## Unreleased
+
+- Update Solid and the web renderer to 2.0.0-rc.15, and the official Vite plugin to 3.0.0-next.50.
+- Update SVG globs to Vite's query API.
+- Fix the SSR example's initial route during hydration and use eager SVG imports because its adapter does not supply Solid's lazy-module asset manifest.
+- Update SSR TypeScript settings and adapter imports.
+
 ## [0.8.1] - 2024-03-25
 - fix typescript for node10 moduleResolution
 

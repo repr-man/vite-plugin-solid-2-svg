@@ -14,15 +14,22 @@ This release targets Solid 2 and requires Node.js 22.12 or later, Vite 8, and
 the prerelease `@solidjs/vite-plugin` 3.x compiler integration. Solid 2 is still
 in release-candidate status, so the dependency versions below are prereleases.
 
+The workspace uses Solid `2.0.0-rc.15` and `@solidjs/vite-plugin`
+`3.0.0-next.50`, with matching rc.15 compiler packages in the lockfile. Keep the
+compiler and runtime versions aligned when updating prereleases.
+
+Solid 2 treats lowercase `on*` names such as `onclick` as ordinary attributes.
+Use camel-case event props such as `<MyIcon onClick={handleClick} />` for handlers.
+
 ### Install
 
 ```bash
-pnpm add -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
-pnpm add solid-js@2.0.0-rc.11 @solidjs/web@2.0.0-rc.11
+pnpm add -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.50 vite@^8
+pnpm add solid-js@2.0.0-rc.15 @solidjs/web@2.0.0-rc.15
 
 # or with npm
-npm install -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.46 vite@^8
-npm install solid-js@2.0.0-rc.11 @solidjs/web@2.0.0-rc.11
+npm install -D github:repr-man/vite-plugin-solid-2-svg @solidjs/vite-plugin@3.0.0-next.50 vite@^8
+npm install solid-js@2.0.0-rc.15 @solidjs/web@2.0.0-rc.15
 ```
 
 ### Setup
@@ -112,11 +119,11 @@ const App = () => {
 export default App;
 ```
 
-To import all svg inside a folder, use `import.meta.glob('@/svgs/*.svg', { as: 'component-solid' })`. See [Vite docs](https://vitejs.dev/guide/features.html#static-assets) for more details.
+To import all svg inside a folder, use `import.meta.glob('@/svgs/*.svg', { query: '?component-solid' })`. See [Vite docs](https://vitejs.dev/guide/features.html#glob-import) for more details.
 
 
 ```tsx
-const icons = import.meta.glob('./*.svg', { as: 'component-solid' })
+const icons = import.meta.glob('./*.svg', { query: '?component-solid' })
 
 /*
   icons = {
@@ -126,7 +133,7 @@ const icons = import.meta.glob('./*.svg', { as: 'component-solid' })
 */
 
 const App = () => {
-  const Icon1 = lazy(() => iconsDic.icon1())
+  const Icon1 = lazy(icons['./icon1.svg'])
   return (
     <div>
         <p>hello</p><Icon1 />
@@ -136,6 +143,11 @@ const App = () => {
 
 export default App;
 ```
+
+For SSR, Solid 2 lazy modules require an asset manifest supplied by the SSR
+integration. With an adapter that does not provide one, use an eager glob
+(`{ query: '?component-solid', eager: true }`) and render each module's `default`
+component, as shown in `examples/ssr`.
 
 ### Why
 
